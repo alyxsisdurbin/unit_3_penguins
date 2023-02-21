@@ -61,4 +61,4 @@ ggplot(data=data_for_t_test) +
 data_for_t_test %>% 
   levene_test(body_mass_g ~ species) # if p<0.05, variances are NOT equal
 
-t.test(data_for_t_test$body_mass_g ~ data_for_t_test$species)
+t.test(data_for_t_test$body_mass_g ~ data_for_t_test$species, var.equal=TRUE) #automatically uses Welch's test, so we have to tell it to use Lavene's test by confirming that the variances are equal 
