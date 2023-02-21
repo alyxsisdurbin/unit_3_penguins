@@ -61,4 +61,30 @@ ggplot(data=data_for_t_test) +
 data_for_t_test %>% 
   levene_test(body_mass_g ~ species) # if p<0.05, variances are NOT equal
 
-t.test(data_for_t_test$body_mass_g ~ data_for_t_test$species, var.equal=TRUE) #automatically uses Welch's test, so we have to tell it to use Lavene's test by confirming that the variances are equal 
+t.test(data_for_t_test$body_mass_g ~ data_for_t_test$species, var.equal=TRUE) #automatically uses Welch's test, so we have to tell it to use Lavene's test by confirming that the variances are equal
+
+
+########### CORRELATIONS ###############
+
+gentoo = penguins %>% 
+  filter(species=="Gentoo")
+
+ggplot(data=gentoo)+
+  geom_point(aes(x=bill_length_mm, y=bill_depth_mm))
+
+ggplot(data=gentoo) +
+  stat_qq(aes(sample=bill_length_mm))
+
+ggplot(data=gentoo) +
+  stat_qq(aes(sample=bill_depth_mm))
+
+cor(x=gentoo$bill_length_mm, y=gentoo$bill_depth_mm, use="complete.obs") #use means to only give us complete observations and not NAs
+
+cor.test(x=gentoo$bill_length_mm, y=gentoo$bill_depth_mm, use="complete.obs")
+
+gentoo %>%
+  cor_test(bill_length_mm, bill_depth_mm)
+
+head(gentoo)
+
+cor(gentoo[ ,c(3:6)], use="complete.obs")
