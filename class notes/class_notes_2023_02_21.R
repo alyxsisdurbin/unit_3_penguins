@@ -88,3 +88,10 @@ gentoo %>%
 head(gentoo)
 
 cor(gentoo[ ,c(3:6)], use="complete.obs")
+
+library(GGally)
+
+penguins %>%
+  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %>%
+  ggpairs(aes(color=species))
+
