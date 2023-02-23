@@ -37,3 +37,21 @@ gentoo %>%
 
 lm_2 = lm(bill_depth_mm ~ bill_length_mm, data=gentoo)
 summary(lm_2)
+
+ggplot(data=gentoo, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_bw()
+
+#better version of what is above
+ggplot(data=penguins) +
+  geom_point(aes(x=bill_length_mm, y=bill_depth_mm, color=species)) +
+  geom_smooth(aes(x=bill_length_mm, y=bill_depth_mm, color=species), method = "lm") +
+  geom_smooth(data=penguins, aes(x=bill_length_mm, y=bill_depth_mm), method = "lm", color="black")
+
+##### Excersice 5.1
+
+ggplot(data=gentoo) +
+  geom_point(aes(x=bill_length_mm, y=flipper_length_mm, color=species))+
+  geom_smooth(aes(x=bill_length_mm, y=flipper_length_mm, color=species), method = "lm") +
+  geom_smooth(data=gentoo, aes(x=bill_length_mm, y=flipper_length_mm), method = "lm", color="black")
