@@ -52,6 +52,6 @@ ggplot(data=penguins) +
 ##### Excersice 5.1
 
 ggplot(data=gentoo) +
-  geom_point(aes(x=bill_length_mm, y=flipper_length_mm, color=species))+
-  geom_smooth(aes(x=bill_length_mm, y=flipper_length_mm, color=species), method = "lm") +
-  geom_smooth(data=gentoo, aes(x=bill_length_mm, y=flipper_length_mm), method = "lm", color="black")
+  geom_point(aes(y=bill_length_mm, x=flipper_length_mm))+
+  geom_smooth(aes(y=bill_length_mm, x=flipper_length_mm), method = "lm") +
+  geom_smooth(data=gentoo, aes(y=bill_length_mm, x=flipper_length_mm), method = "lm", color="black")
