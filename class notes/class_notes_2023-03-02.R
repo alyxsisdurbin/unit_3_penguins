@@ -108,12 +108,12 @@ ggplot(data=lm_gentoo_3_predict) +
 
 #### exercise 5.3
 
-newdata2 = gentoo %>%
+newdata = gentoo %>%
   select(bill_depth_mm) %>%
   mutate(bill_length_mm = median(gentoo$bill_length_mm, na.rm=TRUE),
          body_mass_g = median(gentoo$body_mass_g, nax.rm=TRUE)) 
 
-lm_gentoo_3_predict2 = lm_gentoo_3 %>%
+lm_gentoo_3_predict = lm_gentoo_3 %>%
   broom::augment(newdata=newdata, interval="confidence")
 
 ggplot(data=lm_gentoo_3_predict) +
@@ -131,4 +131,5 @@ anova(penguin_lm)
 
 penguin_anova = aov(body_mass_g ~ species + sex, data=penguins)
  summary(penguin_anova)
+ TukeyHSD(penguin_anova)
 
